@@ -18,7 +18,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-public class Game extends Activity implements OnClickListener, OnSharedPreferenceChangeListener {
+public class Game extends Activity implements OnClickListener,
+		OnSharedPreferenceChangeListener {
 
 	private static final String TAG = "GameAcitvity";
 
@@ -52,7 +53,7 @@ public class Game extends Activity implements OnClickListener, OnSharedPreferenc
 		image1.setOnClickListener(this);
 		image2.setOnClickListener(this);
 		btnStart.setOnClickListener(this);
-		
+
 		// Getting shared preferences object.
 		prefs = PreferenceManager.getDefaultSharedPreferences(this);
 		prefs.registerOnSharedPreferenceChangeListener(this);
@@ -184,8 +185,8 @@ public class Game extends Activity implements OnClickListener, OnSharedPreferenc
 	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences,
 			String key) {
 		// TODO Auto-generated method stub
-		Toast.makeText(Game.this, prefs.getString(key, "Failure"), Toast.LENGTH_LONG)
-		.show();
-		
+		Toast.makeText(Game.this, prefs.getString(key, "Failure"),
+				Toast.LENGTH_SHORT).show();
+
 	}
 }
