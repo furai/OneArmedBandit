@@ -185,7 +185,7 @@ public class Game extends Activity implements OnClickListener,
 	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences,
 			String key) {
 		// TODO Auto-generated method stub
-		Toast.makeText(Game.this, prefs.getString(key, "Failure"),
+		Toast.makeText(Game.this, prefs.getString(String.format("%d euro bet", key), "Failure"),
 				Toast.LENGTH_SHORT).show();
 
 	}
