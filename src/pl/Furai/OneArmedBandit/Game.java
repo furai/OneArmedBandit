@@ -3,8 +3,11 @@ package pl.Furai.OneArmedBandit;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.preference.PreferenceManager;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.graphics.drawable.AnimationDrawable;
 import android.util.Log;
 import android.view.Menu;
@@ -13,8 +16,9 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
-public class Game extends Activity implements OnClickListener {
+public class Game extends Activity implements OnClickListener, OnSharedPreferenceChangeListener {
 
 	private static final String TAG = "GameAcitvity";
 
@@ -24,6 +28,7 @@ public class Game extends Activity implements OnClickListener {
 	private ImageView image0, image1, image2;
 	private Button btnStart;
 	private AnimationDrawable animation0, animation1, animation2;
+	private SharedPreferences prefs;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +52,10 @@ public class Game extends Activity implements OnClickListener {
 		image1.setOnClickListener(this);
 		image2.setOnClickListener(this);
 		btnStart.setOnClickListener(this);
+		
+		// Getting shared preferences object.
+		prefs = PreferenceManager.getDefaultSharedPreferences(this);
+		prefs.registerOnSharedPreferenceChangeListener(this);
 	}
 
 	@Override
@@ -169,5 +178,14 @@ public class Game extends Activity implements OnClickListener {
 				break;
 			}
 		}
+	}
+
+	@Override
+	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences,
+			String key) {
+		// TODO Auto-generated method stub
+		Toast.makeText(Game.this, prefs.getString(key, "Failure"), Toast.LENGTH_LONG)
+		.show();
+		
 	}
 }
