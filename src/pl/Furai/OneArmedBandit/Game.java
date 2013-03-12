@@ -142,9 +142,12 @@ public class Game extends Activity implements OnClickListener,
 		}
 
 		if (!animation0.isRunning() && !animation1.isRunning()
-				&& !animation2.isRunning() && mThread != null) {
-			mThread.interrupt();
-			mThread = null;
+				&& !animation2.isRunning()) {
+			allStopped();
+			if (mThread != null) {
+				mThread.interrupt();
+				mThread = null;
+			}
 		}
 
 	}
@@ -222,5 +225,8 @@ public class Game extends Activity implements OnClickListener,
 				getResources().getString(R.string.lblBetChosen),
 				prefs.getString(key, "Not set")));
 
+	}
+
+	public void allStopped() {
 	}
 }
