@@ -43,13 +43,14 @@ public final class R {
         public static final int ic_launcher=0x7f02000a;
     }
     public static final class id {
-        public static final int ButtonStart=0x7f0b0005;
-        public static final int ImageView0=0x7f0b0002;
-        public static final int ImageView1=0x7f0b0003;
-        public static final int ImageView2=0x7f0b0004;
+        public static final int ButtonStart=0x7f0b0006;
+        public static final int ImageView0=0x7f0b0003;
+        public static final int ImageView1=0x7f0b0004;
+        public static final int ImageView2=0x7f0b0005;
         public static final int LinearLayout=0x7f0b0000;
-        public static final int LinearLayout1=0x7f0b0001;
-        public static final int action_settings=0x7f0b0006;
+        public static final int LinearLayout1=0x7f0b0002;
+        public static final int action_settings=0x7f0b0007;
+        public static final int txtBetValue=0x7f0b0001;
     }
     public static final class layout {
         public static final int activity_game=0x7f030000;
@@ -63,6 +64,7 @@ public final class R {
         public static final int app_name=0x7f070000;
         public static final int betPrefSummary=0x7f070005;
         public static final int betPrefTitle=0x7f070004;
+        public static final int lblBetChosen=0x7f070007;
         public static final int spin=0x7f070002;
         public static final int start=0x7f070003;
     }

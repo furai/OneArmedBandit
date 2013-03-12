@@ -23,5 +23,6 @@
     <string name="betPrefTitle">Wager</string>
     <string name="betPrefSummary">How much would you like to bet?</string>
     <string name="ToastBetChosen">%s euro bet</string>
+    <string name="lblBetChosen">Your current wager is: %s</string>
 
 </resources>

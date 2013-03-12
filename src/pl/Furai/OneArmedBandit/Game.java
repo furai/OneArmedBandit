@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class Game extends Activity implements OnClickListener,
@@ -32,6 +33,7 @@ public class Game extends Activity implements OnClickListener,
 	private Button btnStart;
 	private AnimationDrawable animation0, animation1, animation2;
 	private SharedPreferences prefs;
+	private TextView lblBetValue;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +47,9 @@ public class Game extends Activity implements OnClickListener,
 
 		// Getting button object
 		btnStart = (Button) findViewById(R.id.ButtonStart);
+
+		// Getting label
+		lblBetValue = (TextView) findViewById(R.id.txtBetValue);
 
 		// Setting animation as background
 		image0.setBackgroundResource(R.anim.fruits1);
@@ -71,6 +76,10 @@ public class Game extends Activity implements OnClickListener,
 		// Getting shared preferences object.
 		prefs = PreferenceManager.getDefaultSharedPreferences(this);
 		prefs.registerOnSharedPreferenceChangeListener(this);
+
+		lblBetValue.setText(String.format(
+				getResources().getString(R.string.lblBetChosen),
+				prefs.getString("betValue", "Not set")));
 	}
 
 	@Override
@@ -181,7 +190,7 @@ public class Game extends Activity implements OnClickListener,
 			// TODO Auto-generated method stub
 			super.handleMessage(msg);
 			Log.v(TAG, "Handling message.");
-			
+
 			// It calls a click on the corresponding image
 			switch (msg.getData().getInt("stop")) {
 			case 0:
@@ -201,14 +210,17 @@ public class Game extends Activity implements OnClickListener,
 	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences,
 			String key) {
 		// TODO Auto-generated method stub
-		
+
 		// When preferences change - display toast message
 		Toast.makeText(
 				Game.this,
 				String.format(
 						getResources().getString(R.string.ToastBetChosen),
-						prefs.getString(key, "Failure")), Toast.LENGTH_SHORT)
+						prefs.getString(key, "Not set")), Toast.LENGTH_SHORT)
 				.show();
+		lblBetValue.setText(String.format(
+				getResources().getString(R.string.lblBetChosen),
+				prefs.getString(key, "Not set")));
 
 	}
 }
