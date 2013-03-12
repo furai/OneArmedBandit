@@ -9,6 +9,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.graphics.drawable.AnimationDrawable;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -30,6 +32,7 @@ public class Game extends Activity implements OnClickListener,
 	// No need for initialisation here - global variables are automatically
 	// initialised
 	private ImageView image0, image1, image2;
+	private int frame0, frame1, frame2;
 	private Button btnStart;
 	private AnimationDrawable animation0, animation1, animation2;
 	private SharedPreferences prefs;
@@ -144,6 +147,7 @@ public class Game extends Activity implements OnClickListener,
 		if (!animation0.isRunning() && !animation1.isRunning()
 				&& !animation2.isRunning()) {
 			allStopped();
+			Log.v(TAG, "Stopped all animations.");
 			if (mThread != null) {
 				mThread.interrupt();
 				mThread = null;
@@ -228,5 +232,18 @@ public class Game extends Activity implements OnClickListener,
 	}
 
 	public void allStopped() {
+
+		frame0 = getResources().getIdentifier(
+				((BitmapDrawable)animation0.getCurrent()).toString(), "id",
+				getPackageName());
+		frame1 = getResources().getIdentifier(
+				animation1.getCurrent().toString(), "id",
+				getPackageName());
+		frame2 = getResources().getIdentifier(
+				animation2.getCurrent().toString(), "id",
+				getPackageName());
+		Log.v(TAG, String.format("ID of first image: %d", frame0));
+		Log.v(TAG, String.format("ID of second image: %d", frame1));
+		Log.v(TAG, String.format("ID of third image: %d", frame2));
 	}
 }
