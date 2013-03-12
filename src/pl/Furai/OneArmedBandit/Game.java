@@ -181,6 +181,8 @@ public class Game extends Activity implements OnClickListener,
 			// TODO Auto-generated method stub
 			super.handleMessage(msg);
 			Log.v(TAG, "Handling message.");
+			
+			// It calls a click on the corresponding image
 			switch (msg.getData().getInt("stop")) {
 			case 0:
 				image0.performClick();
