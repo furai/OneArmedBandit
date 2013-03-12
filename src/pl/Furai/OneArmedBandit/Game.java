@@ -11,6 +11,7 @@ import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.Drawable.ConstantState;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -32,7 +33,7 @@ public class Game extends Activity implements OnClickListener,
 	// No need for initialisation here - global variables are automatically
 	// initialised
 	private ImageView image0, image1, image2;
-	private int frame0, frame1, frame2;
+	private ConstantState frame0, frame1, frame2;
 	private Button btnStart;
 	private AnimationDrawable animation0, animation1, animation2;
 	private SharedPreferences prefs;
@@ -233,17 +234,33 @@ public class Game extends Activity implements OnClickListener,
 
 	public void allStopped() {
 
-		frame0 = getResources().getIdentifier(
-				((BitmapDrawable)animation0.getCurrent()).toString(), "id",
-				getPackageName());
-		frame1 = getResources().getIdentifier(
-				animation1.getCurrent().toString(), "id",
-				getPackageName());
-		frame2 = getResources().getIdentifier(
-				animation2.getCurrent().toString(), "id",
-				getPackageName());
-		Log.v(TAG, String.format("ID of first image: %d", frame0));
-		Log.v(TAG, String.format("ID of second image: %d", frame1));
-		Log.v(TAG, String.format("ID of third image: %d", frame2));
+		frame0 = animation0.getCurrent().getConstantState();
+		frame1 = animation1.getCurrent().getConstantState();
+		frame2 = animation2.getCurrent().getConstantState();
+		Log.v(TAG, String.format("ID of first image: %s", frame0));
+		Log.v(TAG, String.format("ID of second image: %s", frame1));
+		Log.v(TAG, String.format("ID of third image: %s", frame2));
+		if (frame0 == frame1 && frame1 == frame2) {
+			Log.v(TAG, "3 matches found");
+			Toast.makeText(
+					Game.this,
+					String.format(getResources().getString(R.string.Equal), 3,
+							(Integer.parseInt((prefs.getString("betValue",
+									"Not set")))) * 50), Toast.LENGTH_SHORT)
+					.show();
+		} else if (frame0 == frame1 || frame1 == frame2 || frame2 == frame0) {
+			Log.v(TAG, "2 matches found");
+			Toast.makeText(
+					Game.this,
+					String.format(getResources().getString(R.string.Equal), 2,
+							(Integer.parseInt((prefs.getString("betValue",
+									"Not set")))) * 5), Toast.LENGTH_SHORT)
+					.show();
+		} else {
+			Log.v(TAG, "0 matches found");
+			Toast.makeText(Game.this,
+					getResources().getString(R.string.NoEqual),
+					Toast.LENGTH_SHORT).show();
+		}
 	}
 }
