@@ -19,7 +19,9 @@
         <item>10 euro</item>
         <item>20 euro</item>
     </string-array>
-        <string name="betPrefTitle">Wager</string>
-        <string name="betPrefSummary">How much would you like to bet?</string>
-        <string name="ToastBetChosen">%s euro bet</string>>
+
+    <string name="betPrefTitle">Wager</string>
+    <string name="betPrefSummary">How much would you like to bet?</string>
+    <string name="ToastBetChosen">%s euro bet</string>
+
 </resources>
