@@ -8,6 +8,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
+import android.content.res.Resources;
 import android.graphics.drawable.AnimationDrawable;
 import android.util.Log;
 import android.view.Menu;
@@ -186,7 +187,7 @@ public class Game extends Activity implements OnClickListener,
 			String key) {
 		// TODO Auto-generated method stub
 		Toast.makeText(Game.this,
-				String.format("%s euro bet", prefs.getString(key, "Failure")),
+				String.format(getResources().getString(R.string.ToastBetChosen), prefs.getString(key, "Failure")),
 				Toast.LENGTH_SHORT).show();
 
 	}
