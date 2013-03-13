@@ -166,22 +166,15 @@ public class Game extends Activity implements OnClickListener,
 			super.run();
 			Log.v(TAG, "New thread.");
 			try {
-				Message msg = mHandler.obtainMessage();
+				Message msg;
 				Bundle bundle = new Bundle();
-				Thread.sleep(10000);
-				bundle.putInt("stop", 0);
-				msg.setData(bundle);
-				msg.sendToTarget();
-				Thread.sleep(1000);
-				msg = mHandler.obtainMessage();
-				bundle.putInt("stop", 1);
-				msg.setData(bundle);
-				msg.sendToTarget();
-				Thread.sleep(1000);
-				msg = mHandler.obtainMessage();
-				bundle.putInt("stop", 2);
-				msg.setData(bundle);
-				msg.sendToTarget();
+				for (int i = 0; i < 3; i++) {
+					msg = mHandler.obtainMessage();
+					bundle.putInt("stop", i);
+					msg.setData(bundle);
+					Thread.sleep(8000 - i*3000);
+					msg.sendToTarget();
+				}
 			} catch (InterruptedException e) {
 				Log.v(TAG, "Interrupted, stopping thread. ");
 			}
@@ -220,12 +213,9 @@ public class Game extends Activity implements OnClickListener,
 		// TODO Auto-generated method stub
 
 		// When preferences change - display toast message
-		Toast.makeText(
-				Game.this,
-				String.format(
-						getResources().getString(R.string.ToastBetChosen),
-						prefs.getString(key, "Not set")), Toast.LENGTH_SHORT)
-				.show();
+		showToastShort(String.format(
+				getResources().getString(R.string.ToastBetChosen),
+				prefs.getString(key, "Not set")));
 		lblBetValue.setText(String.format(
 				getResources().getString(R.string.lblBetChosen),
 				prefs.getString(key, "Not set")));
