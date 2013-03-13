@@ -242,25 +242,23 @@ public class Game extends Activity implements OnClickListener,
 		Log.v(TAG, String.format("ID of third image: %s", frame2));
 		if (frame0 == frame1 && frame1 == frame2) {
 			Log.v(TAG, "3 matches found");
-			Toast.makeText(
-					Game.this,
-					String.format(getResources().getString(R.string.Equal), 3,
+			showToastShort(String
+					.format(getResources().getString(R.string.Equal), 3,
 							(Integer.parseInt((prefs.getString("betValue",
-									"Not set")))) * 50), Toast.LENGTH_SHORT)
-					.show();
+									"Not set")))) * 50));
 		} else if (frame0 == frame1 || frame1 == frame2 || frame2 == frame0) {
 			Log.v(TAG, "2 matches found");
-			Toast.makeText(
-					Game.this,
-					String.format(getResources().getString(R.string.Equal), 2,
+			showToastShort(String
+					.format(getResources().getString(R.string.Equal), 2,
 							(Integer.parseInt((prefs.getString("betValue",
-									"Not set")))) * 5), Toast.LENGTH_SHORT)
-					.show();
+									"Not set")))) * 5));
 		} else {
 			Log.v(TAG, "0 matches found");
-			Toast.makeText(Game.this,
-					getResources().getString(R.string.NoEqual),
-					Toast.LENGTH_SHORT).show();
+			showToastShort(getResources().getString(R.string.NoEqual));
 		}
+	}
+
+	private void showToastShort(String msg) {
+		Toast.makeText(Game.this, msg, Toast.LENGTH_SHORT).show();
 	}
 }
