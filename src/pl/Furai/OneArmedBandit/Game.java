@@ -111,15 +111,8 @@ public class Game extends Activity implements OnClickListener,
 		case R.id.ButtonStart:
 			Log.v(TAG, "Clicked the start button!");
 			if (!animation0.isRunning() && !animation1.isRunning()
-					&& !animation2.isRunning()) {
-				animation0.start();
-				animation1.start();
-				animation2.start();
-				if (mThread == null) {
-					mThread = new MyThread();
-					mThread.start();
-				}
-			}
+					&& !animation2.isRunning())
+				startAll();
 			break;
 		case R.id.ImageView0:
 			Log.v(TAG, "Clicked the first image!");
@@ -172,7 +165,7 @@ public class Game extends Activity implements OnClickListener,
 					msg = mHandler.obtainMessage();
 					bundle.putInt("stop", i);
 					msg.setData(bundle);
-					Thread.sleep(8000 - i*3000);
+					Thread.sleep(8000 - i * 3000);
 					msg.sendToTarget();
 				}
 			} catch (InterruptedException e) {
@@ -250,5 +243,15 @@ public class Game extends Activity implements OnClickListener,
 
 	private void showToastShort(String msg) {
 		Toast.makeText(Game.this, msg, Toast.LENGTH_SHORT).show();
+	}
+
+	private void startAll() {
+		animation0.start();
+		animation1.start();
+		animation2.start();
+		if (mThread == null) {
+			mThread = new MyThread();
+			mThread.start();
+		}
 	}
 }
