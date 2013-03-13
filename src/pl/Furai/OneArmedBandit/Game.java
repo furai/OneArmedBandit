@@ -164,12 +164,19 @@ public class Game extends Activity implements OnClickListener,
 			try {
 				Message msg;
 				Bundle bundle = new Bundle();
+
 				for (int i = 0; i < 3; i++) {
 					msg = mHandler.obtainMessage();
 					bundle.putInt("stop", i);
 					msg.setData(bundle);
 					Thread.sleep(8000 - i * 3000);
+					Log.v(TAG, "Msg: " + bundle);
 					msg.sendToTarget();
+					// Sending a message takes some time... you have to wait
+					// because otherwise value of i gets changed in the bundle
+					// Need some way to synchronise this call ...
+					Thread.sleep(100);
+					Log.v(TAG, "Value of i: " + i);
 				}
 			} catch (InterruptedException e) {
 				Log.v(TAG, "Interrupted, stopping thread. ");
