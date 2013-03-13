@@ -1,3 +1,8 @@
+/*
+ * Programme done by Lucas Grzegorczyk
+ * for AP course @ SDU.
+ */
+
 package pl.Furai.OneArmedBandit;
 
 import android.os.Bundle;
@@ -9,8 +14,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.graphics.drawable.AnimationDrawable;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.graphics.drawable.Drawable.ConstantState;
 import android.util.Log;
 import android.view.Menu;
