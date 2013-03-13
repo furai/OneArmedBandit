@@ -175,7 +175,6 @@ public class Game extends Activity implements OnClickListener,
 					// Sending a message takes some time... you have to wait
 					// because otherwise value of i gets changed in the bundle
 					// Need some way to synchronise this call ...
-					Thread.sleep(100);
 					Log.v(TAG, "Value of i: " + i);
 				}
 			} catch (InterruptedException e) {
